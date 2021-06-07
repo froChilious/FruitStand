@@ -1,6 +1,6 @@
-## FruitStand
+# FruitStand
 
-# Okay, here's the scenario:
+## Okay, here's the scenario:
 
 You work for an online fruit store, and you need to develop a system that will update the catalog information with data provided by your suppliers. When each supplier has new products for your store, they give you an image and a description of each product.
 
@@ -16,7 +16,7 @@ Hopefully this summary has helped you start thinking about how you’ll approach
 
 Up next, we'll give you a few tips that can help you along the way.
 
-# How to Approach the Problem
+## How to Approach the Problem
 
 We're giving you a pretty big project to do at the end of this course -- but you can totally complete it with what you've learned until now! Take your time, and be methodical. Use these tips to help you:
 
@@ -36,3 +36,8 @@ psutil (processes and system utilization)
 shutil (file operations)
 smtplib (sending email)
 Read the lab instructions carefully! Following the instructions and implementing your solution to the specifications that you’re given are critical to completing the task, and to being accurately graded! 
+
+## Steps/scripts
+  1. create functions to upload the images and descriptions for each product
+  2. create a function to generate a report (.pdf) for each import
+  3. setup a monitoring utility to ensure the upload process is running
