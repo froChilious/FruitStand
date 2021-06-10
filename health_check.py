@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 import os, sys, shutil, psutil, socket, sys
-sys.path.insert(1, r'C:\Users\jhoov\Projects\FruitStand')
-import send_email
 
 def check_localhost():
     '''Returns True if localhost does not resolve to 127.0.0.1, otherwise
