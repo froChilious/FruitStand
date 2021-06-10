@@ -2,51 +2,13 @@ from email.message import EmailMessage
 import os, mimetypes
 import smtplib
 
-import smtplib
-fromMy = 'jhoovis@att.net' # fun-fact: from is a keyword in python, you can't use it as variable, did abyone check if this code even works?
-to  = 'jhoovis@yahoo.com'
-subj='TheSubject'
-date='2/1/2010'
-message_text='Hello Or any thing you want to send'
-
-msg = "From: %s\nTo: %s\nSubject: %s\nDate: %s\n\n%s" % ( fromMy, to, subj, date, message_text )
-
-username = str('jhoovis@yahoo.com')  
-password = str('1fr0Ch1l10us')  
-
-try :
-    server = smtplib.SMTP("smtp.mail.yahoo.com",587)
-    server.login(username,password)
-    server.sendmail(fromMy, to,msg)
-    server.quit()    
-    print 'ok the email has sent '
-except :
-    print 'can\'t send the Email'
-
-
-message = EmailMessage()
-try:
-    mail_server = smtplib.SMTP('localhost')
-except ConnectionRefusedError:
-    print('Unable to connect to localhost.')
-
-recipient = 'jhoovis@att.net'
-sender = 'frochilious@gmail.com'
-body = """
-hey there,
-
-I'm learning to send emails from python, good times!
-
-Thanks for listening,
-fro
-"""
-
-def create_email(sender, recipient, subject, body, attachment = ''):
+def generate_email(sender, recipient, subject, body, attachment = None):
+    message = EmailMessage()
     message['From'] = sender
     message['To'] = recipient
     message['Subject'] = subject
     message.set_content(body)
-    if attachment != '':
+    if attachment is not None:
         try:
             attachment_path = attachment
             attachment_file = os.path.basename(attachment_path)
@@ -60,4 +22,16 @@ def create_email(sender, recipient, subject, body, attachment = ''):
                                         )
         except Exception as err:
             print(f'ERROR: Unable to attach the file {attachment} with error msg:\n{err}.')
-    
+    return message
+
+def send_email(message):
+    try:
+        mail_server = smtplib.SMTP('localhost')
+        mail_server.set_debuglevel(1)
+        mail_server.send_message(message)
+        return True
+    except Exception as err:
+        print(f'ERROR: Unable to send email: {err}')
+        return False
+
+        
