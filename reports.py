@@ -5,7 +5,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 def generate_report(attachment, title, paragraph):
     styles = getSampleStyleSheet()
     styleH = styles["Heading1"]
-    styleN = styles["Normal"]
+    styleN = styles["BodyText"]
     report = SimpleDocTemplate(attachment)
     report_title = Paragraph(title,styleH)
     report_body = Paragraph(paragraph,styleN)
