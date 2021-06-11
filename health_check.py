@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os, sys, shutil, psutil, socket, sys
+import emails
 
 def check_localhost():
     '''Returns True if localhost does not resolve to 127.0.0.1, otherwise
@@ -42,6 +43,7 @@ def check_cpu(max_pct=80):
     if they are, otherwise return False.
     '''
     cpu = psutil.cpu_percent()
+    cpu = psutil.cpu_percent()
     if cpu > max_pct:
         return True
     return False
@@ -56,6 +58,7 @@ def main():
     be returned if the check fails. Each check that fails should be emailed
     out to a specific user.
     '''
+    user = 'student-03-32beb94feb5b'
     checks = [
             (check_root_full, 'Error - Available disk space is less than 20%'),
             (check_memory, 'Error - Available memory is less than 500MB'),
@@ -65,19 +68,19 @@ def main():
     everything_ok = True
     for check, msg in checks:
         if check():
-            subject = msg
             body = 'Please check your system and resolve the issue as soon as possible.'
             sender = 'automation@example.com'
-            recipient = '<user>@example.com'
-            message = send_email.generate_email(sender, recipient, subject, body)
-            print(message)
+            recipient = '{}@example.com'.format(user)
+            subject = msg
+            message = emails.generate_email(sender, recipient, subject, body)
+            emails.send_email(message)
+            #print(message)
             everything_ok = False
     if not everything_ok:
-        return 1
-        #sys.exit(1)
+        sys.exit(1)
 
     print('Everything is OK.')
-    return 0
     sys.exit(0)
 
-main()
+if __name__ == '__main__':
+    main()
