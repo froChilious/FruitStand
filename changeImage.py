@@ -3,7 +3,7 @@
 from PIL import Image
 import glob, os
 
-#im_dir = '/home/student/supplier-data/images'
+tiff_dir = '/home/student-03-32beb94feb5b/supplier-data/images/'
 
 def change_images(dir, from_ext, to_ext, resize=(600,400)):
     '''
@@ -26,4 +26,4 @@ def change_images(dir, from_ext, to_ext, resize=(600,400)):
         except Exception as e:
             print(f'Unable to process the picture {file+ext} with Error: {e}.')
 
-#change_images(tiff_dir,'tiff','jpeg')
+change_images(tiff_dir,'tiff','jpeg')
